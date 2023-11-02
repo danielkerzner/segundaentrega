@@ -1,0 +1,15 @@
+{% extends 'base.html' %} 
+{% block title %} {{ materia.name }} {% endblock title %} 
+{% block content %}
+    <h2>{{  materia.name }} </h2>
+    
+    <section class="dados-de-filme">
+      <img src="{{  materia.image }}" alt="Imagem de representação da Matéria {{  materia.name}}" />
+      <ul>
+        <li>Nome: {{  materia.name }}</li>
+        <li>Professor Responsável: {{ materia.professor }}</li>
+        <li>Ano de Ativação: {{ materia.date }}</li>
+      </ul>
+    </section>
+    
+{% endblock content %}

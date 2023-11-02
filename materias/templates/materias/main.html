@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Todas as Matérias</h2>
+<section>
+    <p>
+        Muitos resultados? <a href="{% url 'materias:search' %}">Buscar por Matérias</a>
+      </p>
+      <p>
+        Não encontrou o filme?
+        <a href="{% url 'materias:create' %}">Adicionar uma Nova Matéria</a>
+      </p>
+</section>
+{% if materia_list %}
+<section class="lista-de-cards">
+  {% for materia in materia_list %}
+  <article class="card">
+    <a href="{% url 'materias:detail' forloop.counter %}"
+      ><img src="{{ materia.imagem }}" alt="Imagem de {{ materia.name}}"
+    /></a>
+    <p>{{ materia.name }} </p>
+  </article>
+  {% endfor %}
+</section>
+{% else %}
+<p>Não foi encontrado nenhuma materia.</p>
+{% endif %} {% endblock content %}

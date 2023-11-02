@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Inserir Nova Matéria</h2>
+<form method="POST" action="{% url 'materias:create' %}">
+  {% csrf_token %}
+  <p>
+    <label for="id_name">Código e Nome:</label>
+    <input type="text" name="name" id="id_name" />
+  </p>
+  <p>
+    <label for="id_professor">Nome do professor responsável:</label>
+    <input type="text" name="professor" id="id_professor" />
+  </p>
+  <p>
+    <label for="id_date">Ano de Ativação:</label>
+    <input type="number" name="date" id="id_date" />
+  </p>
+  <p>
+    <label for="id_imagem">URL de uma imagem que de alguma forma represente essa matéria:</label>
+    <input type="url" name="imagem" id="id_imagem" />
+  </p>
+  <button type="submit">Criar</button>
+</form>
+
+{% endblock content %}

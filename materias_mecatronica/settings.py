@@ -35,6 +35,7 @@ CSRF_TRUSTED_ORIGINS = ["https://*.onrender.com/"] # adicione esta linha
 
 INSTALLED_APPS = [
     'staticpages',
+    'materias',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

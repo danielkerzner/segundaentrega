@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Busca de Matérias</h2>
+<form action="{% url 'materias:search' %}">
+    <p>
+        <label for="id_query">Título:</label>
+        <input type="text" name="query" id="id_query" />
+    </p>
+    <button type="submit">Buscar</button>
+</form>
+
+
+<h2>Resultado da Busca</h2>
+{% if materia_list %}
+<section class="lista-de-cards">
+    {% for materia in materia_list %}
+    <article class="card">
+        <img src="{{ materia.imagem }}" alt="Imagem de {{ materia.name}}">
+        <p>{{ materia.name }} </p>
+    </article>
+    {% endfor %}
+</section>
+{% else %}
+<p>Não foi encontrado nenhuma materia encontrada com esse nome.</p>
+{% endif %}
+
+{% endblock content %}
