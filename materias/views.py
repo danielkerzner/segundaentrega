@@ -23,6 +23,8 @@ def search_materias(request):
         context = {"materia_list": materia_list}
     return render(request, 'materias/search.html', context)
 
+
+
 def create_materias(request):
     if request.method == 'POST':
         
@@ -35,34 +37,35 @@ def create_materias(request):
         materia_adicionada.save()
 
         return HttpResponseRedirect(
-            reverse('materias:detail', args=(len(materia.id), )))
+            reverse('materias:detail', args=(materia_adicionada.id, )))
     else:
         return render(request, 'materias/create.html', {})
 
-def update_materia(request, materia_id):
-    materia = get_object_or_404(materia, pk=materia_id)
-
-    if request.method == "POST":
-        materia.name = request.POST['name']
-        materia.professor = request.POST['professor']
-        materia.date = request.POST['date']
-        materia.imagem = request.POST['imagem']
-        materia.descricao = request.POST['descricao']
-        materia.save()
-        return HttpResponseRedirect(
-            reverse('materias:detail', args=(materia.id, )))
-
-    context = {'materia': materia}
-    return render(request, 'materias/update.html', context)
-
 def delete_materia(request, materia_id):
-    materia = get_object_or_404(materia, pk=materia_id)
+    materia_del = get_object_or_404(materia, pk=materia_id)
 
     if request.method == "POST":
-        materia.delete()
+        materia_del.delete()
         return HttpResponseRedirect(reverse('materias:main'))
 
-    context = {'materia': materia}
+    context = {'materia': materia_del}
     return render(request, 'materias/delete.html', context)
+
+def update_materia(request, materia_id):
+    materia_atua = get_object_or_404(materia, pk=materia_id)
+
+    if request.method == "POST":
+        materia_atua.name = request.POST['name']
+        materia_atua.professor = request.POST['professor']
+        materia_atua.date = request.POST['date']
+        materia_atua.imagem = request.POST['imagem']
+        materia_atua.descricao = request.POST['descricao']
+        materia_atua.save()
+        return HttpResponseRedirect(
+            reverse('materias:detail', args=(materia_atua.id, )))
+
+    context = {'materia': materia_atua}
+    return render(request, 'materias/update.html', context)
+    
 
 # Create your views here.

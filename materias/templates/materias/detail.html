@@ -12,7 +12,6 @@
     <li>Professor Responsável:{{materia.professor}}</li>
     <li>Ano de Ativação: {{ materia.date }}</li>
     <li>Descrição: {{ materia.descricao }}</li>
-    
     <li><a href="{% url 'materias:update' materia.id %}">Editar</a></li>
     <li><a href="{% url 'materias:delete' materia.id %}">Apagar</a></li>
   </ul>

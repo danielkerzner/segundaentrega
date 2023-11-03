@@ -3,7 +3,7 @@
 <form action="{% url 'materias:delete' materia.id %}" method="post">
   {% csrf_token %}
   <p>
-    Você tem certeza que deseja apagar essa disciplina? "{{ materia.name }}"?
+    Você deseja remover a disciplina: "{{ materia.name }}" do site??
   </p>
   <button type="submit">Apagar</button>
 </form>

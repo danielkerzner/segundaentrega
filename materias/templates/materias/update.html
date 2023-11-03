@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Atualizar os Dados da Matéria {{ materia.name }}</h2>
+<h2>Atualizar Dados do Filme {{ materia.name }} ({{ materia.release_year}})</h2>
 <form method="post" action="{% url 'materias:update' materia.id%}">
   {% csrf_token %}
   <p>
@@ -8,16 +8,11 @@
     <input type="text" name="name" id="id_name" value="{{ materia.name }}" />
   </p>
   <p>
-    <label for=" id_professor">Professor Responsável:</label>
-    <input
-      type="text"
-      name="professor"
-      id="id_professor"
-      value="{{ materia.professor }}"
-    />
+    <label for="id_professor">Título:</label>
+    <input type="text" name="professor" id="id_professor" value="{{ materia.professor }}" />
   </p>
   <p>
-    <label for=" id_date">Data de Ativação:</label>
+    <label for=" id_date">Ano de Lançamento:</label>
     <input
       type="date"
       name="date"
@@ -25,8 +20,8 @@
       value="{{ materia.date }}"
     />
   </p>
-    <p>
-    <label for=" id_imagem">Imagem Representativa:</label>
+  <p>
+    <label for=" id_imagem">URL do Poster:</label>
     <input
       type="url"
       name="imagem"
@@ -35,13 +30,8 @@
     />
   </p>
   <p>
-    <label for=" id_descricao">Descrição da Disciplina (Recomendo Copiar do Júpter):</label>
-    <input
-      type="text"
-      name="descricao"
-      id="id_descricao"
-      value="{{materia.descricao}}"
-    />
+    <label for="id_descricao">Título:</label>
+    <input type="text" name="descricao" id="id_descricao" value="{{ materia.descricao }}" />
   </p>
   <button type="submit">Atualizar</button>
 </form>
