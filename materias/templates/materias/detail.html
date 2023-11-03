@@ -1,15 +1,20 @@
 {% extends 'base.html' %} 
-{% block title %} {{ materia.name }} {% endblock title %} 
+{% block title %}
+  {{ materia.name }} 
+{% endblock title %}
 {% block content %}
-    <h2>{{  materia.name }} </h2>
+
+<h2>Detalhes da Matéria:  {{ materia.name }} </h2>
+<section class="dados-de-filme">
+  <img src="{{ materia.imagem }}" alt="Imagem representativa da disciplina: {{ materia.name}}" />
+  <ul>
+    <li>Nome: {{ materia.name }}</li>
+    <li>Professor Responsável:{{materia.professor}}</li>
+    <li>Ano de Ativação: {{ materia.date }}</li>
+    <li>Descrição: {{ materia.descricao }}</li>
     
-    <section class="dados-de-filme">
-      <img src="{{  materia.image }}" alt="Imagem de representação da Matéria {{  materia.name}}" />
-      <ul>
-        <li>Nome: {{  materia.name }}</li>
-        <li>Professor Responsável: {{ materia.professor }}</li>
-        <li>Ano de Ativação: {{ materia.date }}</li>
-      </ul>
-    </section>
-    
+    <li><a href="{% url 'materias:update' materia.id %}">Editar</a></li>
+    <li><a href="{% url 'materias:delete' materia.id %}">Apagar</a></li>
+  </ul>
+</section>
 {% endblock content %}

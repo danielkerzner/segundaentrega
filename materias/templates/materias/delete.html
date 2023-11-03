@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="{% url 'materias:delete' materia.id %}" method="post">
+  {% csrf_token %}
+  <p>
+    Você tem certeza que deseja apagar essa disciplina? "{{ materia.name }}"?
+  </p>
+  <button type="submit">Apagar</button>
+</form>
+{% endblock content %}
