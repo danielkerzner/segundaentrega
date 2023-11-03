@@ -110,20 +110,25 @@
     text-decoration: underline;
   }
   
-  .dados-de-filme {
+  .dados-da-materia {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
     justify-content: left;
     padding: 1rem 0;
   }
   
-  .dados-de-filme img {
-    width: 285px;
-    box-shadow: 2px 2px 10px var(--color-shadow);
+  .dados-da-materia img {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-height: 400px;
+    box-shadow: 2px 8px 10px var(--color-shadow);
+    filter: grayscale(80%);
   }
   
-  .dados-de-filme ul {
+  .dados-da-materia ul {
     list-style-type: none;
   }
   
