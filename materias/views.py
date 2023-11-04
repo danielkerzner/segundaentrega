@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from .models import materia
+from .forms import materiaForm
 
 
 def list_materias(request):
@@ -27,19 +28,23 @@ def search_materias(request):
 
 def create_materias(request):
     if request.method == 'POST':
-        
-        m_name= request.POST['name']
-        m_professor = request.POST['professor']
-        m_date = request.POST['date']
-        m_imagem = request.POST['imagem']
-        m_descricao = request.POST['descricao']
-        materia_adicionada = materia(name = m_name, professor = m_professor, date = m_date, imagem = m_imagem, descricao = m_descricao)
-        materia_adicionada.save()
-
-        return HttpResponseRedirect(
-            reverse('materias:detail', args=(materia_adicionada.id, )))
+        form = materiaForm(request.POST)
+        if form.is_valid():
+            materia_name = form.cleaned_data['name']
+            materia_professor = form.cleaned_data['professor']
+            materia_date = form.cleaned_data['date']
+            materia_imagem = form.cleaned_data['imagem']
+            materia_descricao = form.cleaned_data['descricao']
+            materia_criada = materia(name=materia_name,professor = materia_professor, date = materia_date, imagem = materia_imagem, descricao = materia_descricao)
+            materia_criada.save()
+            return HttpResponseRedirect(
+                reverse('materias:detail', args=(materia_criada.id, )))
     else:
-        return render(request, 'materias/create.html', {})
+        form = materiaForm()
+    context = {'form': form}
+    return render(request, 'materias/create.html', context)
+
+    
 
 def delete_materia(request, materia_id):
     materia_del = get_object_or_404(materia, pk=materia_id)
@@ -52,19 +57,30 @@ def delete_materia(request, materia_id):
     return render(request, 'materias/delete.html', context)
 
 def update_materia(request, materia_id):
-    materia_atua = get_object_or_404(materia, pk=materia_id)
+    materia_atual = get_object_or_404(materia, pk=materia_id)
 
     if request.method == "POST":
-        materia_atua.name = request.POST['name']
-        materia_atua.professor = request.POST['professor']
-        materia_atua.date = request.POST['date']
-        materia_atua.imagem = request.POST['imagem']
-        materia_atua.descricao = request.POST['descricao']
-        materia_atua.save()
-        return HttpResponseRedirect(
-            reverse('materias:detail', args=(materia_atua.id, )))
+        form = materiaForm(request.POST)
+        if form.is_valid():
+            materia_atual.name= form.cleaned_data['name']
+            materia_atual.professor = form.cleaned_data['professor']
+            materia_atual.date = form.cleaned_data['date']
+            materia_atual.imagem = form.cleaned_data['imagem']
+            materia_atual.descricao = form.cleaned_data['descricao']
+            materia_atual.save()
+            return HttpResponseRedirect(
+                reverse('materias:detail', args=(materia_atual.id, )))
+    else:
+        form = materiaForm(
+            initial={
+                'name': materia_atual.name,
+                'professor': materia_atual.professor,
+                'date': materia_atual.date,
+                'imagem': materia_atual.imagem,
+                'descricao':materia_atual.descricao
+            })
 
-    context = {'materia': materia_atua}
+    context = {'materia': materia_atual, 'form': form}
     return render(request, 'materias/update.html', context)
     
 

@@ -1,38 +1,11 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<h2>Atualizar Dados do Filme {{ materia.name }} ({{ materia.release_year}})</h2>
-<form method="post" action="{% url 'materias:update' materia.id%}">
-  {% csrf_token %}
-  <p>
-    <label for="id_name">Título:</label>
-    <input type="text" name="name" id="id_name" value="{{ materia.name }}" />
-  </p>
-  <p>
-    <label for="id_professor">Título:</label>
-    <input type="text" name="professor" id="id_professor" value="{{ materia.professor }}" />
-  </p>
-  <p>
-    <label for=" id_date">Ano de Lançamento:</label>
-    <input
-      type="date"
-      name="date"
-      id="id_date"
-      value="{{ materia.date }}"
-    />
-  </p>
-  <p>
-    <label for=" id_imagem">URL do Poster:</label>
-    <input
-      type="url"
-      name="imagem"
-      id="id_imagem"
-      value="{{materia.imagem}}"
-    />
-  </p>
-  <p>
-    <label for="id_descricao">Título:</label>
-    <input type="text" name="descricao" id="id_descricao" value="{{ materia.descricao }}" />
-  </p>
-  <button type="submit">Atualizar</button>
+<h2>Atualizar Dados da Matéria {{ materia.name }} </h2>
+<form method="POST" action="{% url 'materias:update' materia.id%}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Atualizar</button>
 </form>
+
 {% endblock content %}
