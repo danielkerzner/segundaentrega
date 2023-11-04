@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Comente a matéria: {{ materia.name }} </h2>
+
+<form action="{% url 'materias:review' materia.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Postar comentário</button>
+</form>
+
+<p><a href="{% url 'materias:detail' materia.id %}">Retorne a página da Disciplina</a></p>
+{% endblock content %}

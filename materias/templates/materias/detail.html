@@ -16,4 +16,28 @@
     <li><a href="{% url 'materias:delete' materia.id %}">Apagar</a></li>
   </ul>
 </section>
+<section>
+  <header>
+      <h3>Comentários</h3>
+  </header>
+  <ul>
+      {% if materia.review_set.all %}
+          {% for review in materia.review_set.all %}
+              <figure>
+                  <blockquote>
+                      "{{ review.text }}"
+                  </blockquote>
+                  <figcaption>—{{ review.author }} ({{review.date}})</figcaption>
+              </figure>
+          {% endfor %}
+      {% else %}
+          <p>Ainda não existe nenhum comentário dessa matéria.</p>
+      {% endif %}
+  </ul>
+    
+  <hr>
+
+  <a href="{% url 'materias:review' materia.id %}"><button>Crie sua Resenha</button></a>
+</section>
+
 {% endblock content %}

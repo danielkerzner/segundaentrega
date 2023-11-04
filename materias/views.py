@@ -1,8 +1,10 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
-from .models import materia
-from .forms import materiaForm
+from .models import materia, Review
+from .forms import materiaForm, ReviewForm
+from datetime import datetime
+
 
 
 def list_materias(request):
@@ -86,6 +88,24 @@ def update_materia(request, materia_id):
 
     context = {'materia': materia_atual, 'form': form}
     return render(request, 'materias/update.html', context)
-    
+
+def create_review(request, materia_id):
+    materia_comentada = get_object_or_404(materia, pk=materia_id)
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review_author = form.cleaned_data['author']
+            review_text = form.cleaned_data['text']
+            review = Review(author=review_author,
+                            text=review_text,
+                            date = datetime.now(),
+                            materia=materia_comentada)
+            review.save()
+            return HttpResponseRedirect(
+                reverse('materias:detail', args=(materia_id, )))
+    else:
+        form = ReviewForm()
+    context = {'form': form, 'materia': materia_comentada}
+    return render(request, 'materias/review.html', context)
 
 # Create your views here.
