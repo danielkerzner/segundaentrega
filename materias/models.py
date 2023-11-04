@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from datetime import datetime
 
 
 class materia(models.Model):
@@ -18,6 +19,7 @@ class Review(models.Model):
                                on_delete=models.CASCADE)
     text = models.CharField(max_length=255)
     likes = models.IntegerField(default=0)
+    date = models.DateTimeField(default=datetime.now())
     materia = models.ForeignKey(materia, on_delete=models.CASCADE)
 
     def __str__(self):
