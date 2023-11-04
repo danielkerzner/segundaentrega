@@ -4,11 +4,11 @@
 {% endblock title %}
 {% block content %}
 
-
-<section class="dados-da-materia">
+<h2>Detalhes da Matéria:  {{ materia.name }} </h2>
+<section class="dados-de-filme">
   <img src="{{ materia.imagem }}" alt="Imagem representativa da disciplina: {{ materia.name}}" />
-  <h2>Detalhes da Matéria:  {{ materia.name }} </h2>
   <ul>
+    <li>Nome: {{ materia.name }}</li>
     <li>Professor Responsável:{{materia.professor}}</li>
     <li>Ano de Ativação: {{ materia.date }}</li>
     <li>Descrição: {{ materia.descricao }}</li>
