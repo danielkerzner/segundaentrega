@@ -45,16 +45,20 @@ def create_materias(request):
     return render(request, 'materias/create.html', context)
 
     
-
 def delete_materia(request, materia_id):
     materia_del = get_object_or_404(materia, pk=materia_id)
 
     if request.method == "POST":
         materia_del.delete()
-        return HttpResponseRedirect(reverse('materias:main'))
+        return HttpResponseRedirect(reverse('materias:confirm_delete'))
 
     context = {'materia': materia_del}
     return render(request, 'materias/delete.html', context)
+
+def confirm_delete(request):
+    context = {}
+    return render(request, 'materias/confirm_delete.html', context)
+
 
 def update_materia(request, materia_id):
     materia_atual = get_object_or_404(materia, pk=materia_id)
