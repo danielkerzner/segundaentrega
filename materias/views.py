@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
-from .models import materia, Review
+from .models import materia, Review, Category
 from .forms import materiaForm, ReviewForm
 from datetime import datetime
 
@@ -108,4 +108,13 @@ def create_review(request, materia_id):
     context = {'form': form, 'materia': materia_comentada}
     return render(request, 'materias/review.html', context)
 
+def list_categories(request):
+    category_list = Category.objects.all()
+    context = {'category_list': category_list}
+    return render(request, 'materias/category_list.html', context)
+
+def detail_category(request, category_id):
+    category_detail = get_object_or_404(Category, pk=category_id)
+    context = {'category': category_detail}
+    return render(request, 'materias/category_detail.html', context)
 # Create your views here.

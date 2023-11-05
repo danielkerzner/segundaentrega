@@ -12,4 +12,6 @@ urlpatterns = [
     path('delete/<int:materia_id>/', views.delete_materia, name='delete'),
     path('update/<int:materia_id>/', views.update_materia, name='update'),
     path('<int:materia_id>/review/', views.create_review, name='review'),
+    path('categories/', views.list_categories, name='categories'),
+    path('categories/<int:category_id>/', views.detail_category, name='detail_category')
 ]

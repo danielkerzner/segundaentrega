@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Categorias
+{% endblock title %}
+
+{% block content %}
+<h2>Disciplinas da Categoria: {{category.name}}</h2>
+
+<section>
+        <ul>
+            <li>Descricao: {{ category.descricao }}</li>
+        </ul>
+        <div class="lista-de-cards">
+            {% for materia in category.materias.all %}
+            <div class="card">
+                <a href="{% url 'materias:detail' materia.id %}">
+                    <img src="{{ materia.imagem }}" alt="Poster do filme {{ materia.name}}">
+                </a>
+                <p>{{ materia.name }} </p>
+            </div>
+            {% endfor %}
+        </div>
+</section>
+
+{% endblock content %}

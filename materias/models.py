@@ -24,4 +24,12 @@ class Review(models.Model):
 
     def __str__(self):
         return f'"{self.text}" - {self.author.username}'
+    
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+    descricao = models.TextField()
+    materias = models.ManyToManyField(materia)
+
+    def __str__(self):
+        return f'{self.name}'
 # Create your models here.
