@@ -17,6 +17,14 @@
   </ul>
 </section>
 <section>
+  <h3>Categorias</h3>
+  <ul>
+    {% if materia.category_set.all %}
+      <li>Essa disciplina têm como área de atuação: {{ materia.category_set.all|join:", " }} </li>
+    {% endif %}
+  </ul>
+</section>
+<section>
   <header>
       <h3>Comentários</h3>
   </header>
