@@ -5,7 +5,7 @@
         Muitos resultados? <a href="{% url 'materias:search' %}">Buscar por Matérias</a>
       </p>
       <p>
-        Não encontrou o filme?
+        Não encontrou a disciplina que procurava?
         <a href="{% url 'materias:create' %}">Adicionar uma Nova Matéria</a>
       </p>
 </section>
@@ -14,8 +14,8 @@
   {% for materia in materia_list %}
   <article class="card">
     <a href="{% url 'materias:detail' materia.id %}"
-      ><img src="{{ materia.imagem }}" alt="Imagem de {{ materia.name}}"
-    /></a>
+      ><!--<img src="{{ materia.imagem }}" alt="Imagem de {{ materia.name}}"-->
+    aqui</a>
     <p>{{ materia.name }} </p>
   </article>
   {% endfor %}
