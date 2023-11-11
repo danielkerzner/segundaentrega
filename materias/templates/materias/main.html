@@ -13,9 +13,7 @@
 <section class="lista-de-cards">
   {% for materia in materia_list %}
   <article class="card">
-    <a href="{% url 'materias:detail' materia.id %}"
-      ><!--<img src="{{ materia.imagem }}" alt="Imagem de {{ materia.name}}"-->
-    aqui</a>
+    <a href="{% url 'materias:detail' materia.id %}"><img src="{{ materia.imagem }}" alt="Imagem de {{ materia.name}}"></a>
     <p>{{ materia.name }} </p>
   </article>
   {% endfor %}
