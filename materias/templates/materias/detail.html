@@ -19,8 +19,11 @@
 <section>
   <h3>Categorias</h3>
   <ul>
+    <header>Essa disciplina têm como área de atuação:</header>
     {% if materia.category_set.all %}
-      <li>Essa disciplina têm como área de atuação: {{ materia.category_set.all|join:", " }} </li>
+    {%for category in materia.category_set.all%}
+      <li><a href="{% url 'materias:detail_category' category.id %}">{{ category.name }}</a></li>
+      {%endfor%}
     {% endif %}
   </ul>
 </section>
@@ -29,14 +32,16 @@
       <h3>Comentários</h3>
   </header>
   <ul>
-      {% if materia.review_set.all %}
-          {% for review in materia.review_set.all %}
+      {% if review_list %}
+          {% for review in review_list %}
+          {% if review.materia == materia%}
               <figure>
                   <blockquote>
                       "{{ review.text }}"
                   </blockquote>
                   <figcaption>—{{ review.author }} ({{review.date}})</figcaption>
               </figure>
+          {%endif%}
           {% endfor %}
       {% else %}
           <p>Ainda não existe nenhum comentário dessa matéria.</p>

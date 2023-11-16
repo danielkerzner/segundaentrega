@@ -14,7 +14,8 @@ def list_materias(request):
 
 def detail_materia(request, materia_id):
     materia_detail = get_object_or_404(materia, pk=materia_id)
-    context = {'materia': materia_detail}
+    review_list = Review.objects.order_by("-date")
+    context = {'materia': materia_detail, 'review_list':review_list}
     return render(request, 'materias/detail.html', context)
 
 
